@@ -6,5 +6,12 @@ def Q_02(self):
     n1 = 0
 
     ## YOUR CODE HERE ##
+    with open("/dataset/validation.csv", 'r') as csvfile:
+        for line in csvfile:
+            sample = line.split(',')
+            if sample[8] == 0:
+                n0 += 1
+            elif sample[8] == 1:
+                n1 += 1
 
     return [n0, n1]
