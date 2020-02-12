@@ -5,7 +5,7 @@
 from Assigned import *
 
 q = Assigned('./dataset/training.csv', 'dataset/validation.csv', 7) #column indices start from 0
-#print(q.Q_01())
+print(q.Q_01())
 #res = q.Q_02()
 #print("number of 0 = %d, number of 1 = %d" %(res[0],res[1]))
 #print("stdev(second_feature) = %f"%(q.Q_03()))
@@ -26,5 +26,4 @@ q = Assigned('./dataset/training.csv', 'dataset/validation.csv', 7) #column indi
 #res = q.Q_19()
 #print(res)
 print(q.Q_20())
-
 
