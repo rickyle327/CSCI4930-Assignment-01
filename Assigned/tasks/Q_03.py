@@ -3,7 +3,10 @@ def Q_03(self):
     # the validation dataset: "dataset/validation.csv"
     std = 0
 
-    ## YOUR CODE HERE ##
+    # YOUR CODE HERE
+    import numpy as np
+    column = list(self.validation.iloc[:, 1])
+    std = np.std(column)
     return std
 
 

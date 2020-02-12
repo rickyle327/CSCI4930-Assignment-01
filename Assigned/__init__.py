@@ -1,16 +1,13 @@
 class Assigned:
     def __init__(self, training_filename, validation_filename, target_column_index):
-        self.training_filename =training_filename
-        self.target_column =target_column_index
+        self.training_filename = training_filename
+        self.target_column = target_column_index
         import pandas as pd
         # First load the dataset into pandas dataframe
-        self.training = pd.read_csv(training_filename,header=None,delimiter=',')
-        self.validation = pd.read_csv(validation_filename,header=None,delimiter=',')
+        self.training = pd.read_csv(training_filename, header=None, delimiter=',')
+        self.validation = pd.read_csv(validation_filename, header=None, delimiter=',')
 
-
-
-
-    #Imported methods
+    # Imported methods
     from .tasks.Q_01 import Q_01
     from .tasks.Q_02 import Q_02
     from .tasks.Q_03 import Q_03
@@ -31,23 +28,3 @@ class Assigned:
     from .tasks.Q_18 import Q_18
     from .tasks.Q_19 import Q_19
     from .tasks.Q_20 import Q_20
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

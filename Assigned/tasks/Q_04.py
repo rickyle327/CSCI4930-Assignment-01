@@ -5,6 +5,10 @@ def Q_04(self):
     med = 0
 
     ## YOUR CODE HERE ##
+    import numpy as np
+    column = list(self.validation.iloc[:, 6])
+    med = np.median(column)
+
     return med
 
 
