@@ -5,8 +5,11 @@ def FDR(self,conf_mat):
     [TN, FP, FN, TP] = conf_mat
     fdr = 0
 
-    ## YOUR CODE HERE ###
+    # YOUR CODE HERE
+    if FP + TP == 0:
+        return -1
 
+    fdr = FP / (FP + TP)
     return fdr
 
 
