@@ -8,15 +8,11 @@ def F1(self, conf_mat):
     f1 = 0
 
     # YOUR CODE HERE
-    from .Q_07 import precision
-    from .Q_08 import recall
 
-    p = precision(self, conf_mat)
-    r = recall(self, conf_mat)
-    if p + r == 0:
+    if self.precision(conf_mat) + self.recall(conf_mat) == 0:
         return -1
 
-    f1 = 2 * ((p * r) / (p + r))
+    f1 = 2 * ((self.precision(conf_mat) * self.recall(conf_mat)) / (self.precision(conf_mat) + self.recall(conf_mat)))
 
     return f1
 

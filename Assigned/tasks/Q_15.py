@@ -9,8 +9,16 @@ def Q_15(self):
     X = None
     y = None
 
-
-    ## YOUR CODE HERE ##
-
+    # YOUR CODE HERE
+    import numpy as np
+    y = list(self.validation.iloc[:, 8])
+    X = self.validation.drop(self.validation.columns[8], axis='columns').to_numpy()
+    for c in range(0, len(X[0])):
+        feature = list(self.training.iloc[:, c])
+        m = np.mean(feature)
+        s = np.std(feature)
+        X[c] = X[c].astype(float)
+        for r in range(0, self.validation.count(axis='columns').values.size):
+            X[r][c] = (X[r][c] - m) / s
 
     return (X, y)

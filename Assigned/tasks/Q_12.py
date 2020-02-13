@@ -1,5 +1,5 @@
-def Q_12(self, model_files=["models/Model_1.pkl","models/Model_2.pkl","models/Model_3.pkl",\
-                            "models/Model_4.pkl","models/Model_5.pkl","models/Model_6.pkl"]):
+def Q_12(self, model_files=["models/Model_1.pkl", "models/Model_2.pkl", "models/Model_3.pkl", \
+                            "models/Model_4.pkl", "models/Model_5.pkl", "models/Model_6.pkl"]):
     # Task 12: Return as a dataframe containing:
     # {model_name,acc,prec,rec,f1,mcc,FDR} for each of the N models (listed in model_files)
     # predicting the target variables  of the validation data: "dataset/validation.csv"
@@ -18,12 +18,21 @@ def Q_12(self, model_files=["models/Model_1.pkl","models/Model_2.pkl","models/Mo
     from sklearn import tree
     from sklearn.svm import SVC
     from sklearn.neighbors import KNeighborsClassifier
-    result = pd.DataFrame(columns=['model_name','Accuracy','Precision','Recall','F1','MCC','FDR'])
 
-
-    ## YOUR CODE HERE ##
-
-
-
+    # YOUR CODE HERE
+    result = pd.DataFrame(columns=['model_name', 'Accuracy', 'Precision', 'Recall', 'F1', 'MCC', 'FDR'])
+    y_actual = self.validation.iloc[:, 8].tolist()
+    for file in model_files:
+        with open(file, 'rb') as infile:
+            model = pickle.load(infile)
+            y_pred = model.predict(self.validation.drop(self.validation.columns[8], axis='columns')).tolist()
+            conf_mat = self.confusion_matrix(y_actual, y_pred)
+            acc = self.accuracy(conf_mat)
+            prec = self.precision(conf_mat)
+            rec = self.recall(conf_mat)
+            f1 = self.F1(conf_mat)
+            mcc = self.MCC(conf_mat)
+            fdr = self.FDR(conf_mat)
+            result = result.append({'model_name': file, 'Accuracy': acc,  'Precision': prec, 'Recall': rec, 'F1': f1, 'MCC': mcc, 'FDR':fdr}, ignore_index=True)
 
     return result

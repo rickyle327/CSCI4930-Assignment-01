@@ -22,7 +22,19 @@ def Q_16(self, X, y, model_files=["models/Model_1.pkl","models/Model_2.pkl","mod
 
 
     ## YOUR CODE HERE ###
-
-
+    result = pd.DataFrame(columns=['model_name', 'Accuracy', 'Precision', 'Recall', 'F1', 'MCC', 'FDR'])
+    y_actual = y
+    for file in model_files:
+        with open(file, 'rb') as infile:
+            model = pickle.load(infile)
+            y_pred = model.predict(X).tolist()
+            conf_mat = self.confusion_matrix(y_actual, y_pred)
+            acc = self.accuracy(conf_mat)
+            prec = self.precision(conf_mat)
+            rec = self.recall(conf_mat)
+            f1 = self.F1(conf_mat)
+            mcc = self.MCC(conf_mat)
+            fdr = self.FDR(conf_mat)
+            result = result.append({'model_name': file, 'Accuracy': acc,  'Precision': prec, 'Recall': rec, 'F1': f1, 'MCC': mcc, 'FDR':fdr}, ignore_index=True)
 
     return result

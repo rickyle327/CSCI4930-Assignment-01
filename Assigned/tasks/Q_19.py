@@ -27,12 +27,21 @@ def Q_19(self, model_file="models/Model_1.pkl"):
     fdr = 0
 
     ## YOUR CODE HERE ##
+    y_actual = self.validation.iloc[:, 8].tolist()
+    with open(model_file, 'rb') as infile:
+        model = pickle.load(infile)
+        y_pred = model.predict(self.validation.drop(self.validation.columns[8], axis='columns')).tolist()
+        swap = {0: 1, 1: 0}
+        for i in range(0, len(y_pred)):
+            y_pred[i] = swap[y_pred[i]]
 
+        conf_mat = self.confusion_matrix(y_actual, y_pred)
+        acc = self.accuracy(conf_mat)
+        prec = self.precision(conf_mat)
+        rec = self.recall(conf_mat)
+        f1 = self.F1(conf_mat)
+        mcc = self.MCC(conf_mat)
+        fdr = self.FDR(conf_mat)
+        result = pd.DataFrame({'Accuracy': [acc], 'Precision': [prec], 'Recall': [rec], 'F1': [f1], 'MCC': [mcc], 'FDR': [fdr]})
 
-
-
-
-
-    result = pd.DataFrame({'Accuracy':[acc],'Precision':[prec],'Recall':[rec],\
-                           'F1':[f1],'MCC':[mcc],'FDR':[fdr]})
     return result

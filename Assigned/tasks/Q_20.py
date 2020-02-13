@@ -13,16 +13,31 @@ def Q_20(self):
     TN = 0
     FP = 0
     FN = 0
-    COMMENT = "blah blah"
+    COMMENT = "We can see that flipping the predictions will invert the values for f1 and mcc"
     F1_original = 0
     MCC_original = 0
     F1_flipped = 0
     MCC_flipped = 0
 
+    # YOUR CODE HERE
+    import pandas as pd
+    TP = 90
+    TN = 1
+    FP = 4
+    FN = 5
+    conf_mat = [TN, FP, FN, TP]
 
+    F1_original = self.F1(conf_mat)
+    MCC_original = self.MCC(conf_mat)
 
-    ## YOUR CODE HERE ##
+    TP_flipped = FP
+    TN_flipped = FN
+    FP_flipped = TP
+    FN_flipped = TN
+    conf_mat_flipped = [TP_flipped, FP_flipped, FN_flipped, TN_flipped]
 
+    F1_flipped = self.F1(conf_mat_flipped)
+    MCC_flipped = self.MCC(conf_mat_flipped)
 
     result = pd.DataFrame({'TP': [5], 'TN': [4], 'FP': [1], \
                            'FN': [90], 'F1_original': [F1_original], \

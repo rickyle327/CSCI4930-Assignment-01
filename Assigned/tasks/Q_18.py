@@ -6,6 +6,7 @@ def Q_18(self, performance_result_dataframe):
 
 
     ## YOUR CODE HERE
-
+    sample = performance_result_dataframe.loc[performance_result_dataframe['Recall'].idxmin()]
+    name = sample.get(key='model_name')
 
     return name
